@@ -4,9 +4,7 @@
   * CLion 2018
   * C++14
 * **Sources**
-  * [Udemy: Beginning C++ Programming](https://www.udemy.com/java-the-complete-java-developer-course/)
-  * [My course notes](https://github.com/MAShah-UK/CompleteJavaMasterclass/blob/master/notes/Notes.docx)
-
+  * [Udemy: Beginning C++ Programming](https://www.udemy.com/beginning-c-plus-plus-programming/)
 ## Course Content
 * ✓ Introduction
 * Installation and Setup
