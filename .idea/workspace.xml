@@ -11,12 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35c3b3d9-5ccf-4d51-b885-ef940a7e63cc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Cero.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/BeginningCppProgramming.docx" beforeDir="false" afterPath="$PROJECT_DIR$/notes/BeginningCppProgramming.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sections/Getting Started/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/sections/Getting Started/main.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="35c3b3d9-5ccf-4d51-b885-ef940a7e63cc" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/sections/Getting Started/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +24,7 @@
     <session id="-1221788936">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.6" value="1" />
@@ -66,7 +61,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sections/Getting Started/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="969">
+            <state relative-caret-position="812">
               <caret line="57" column="2" selection-start-line="57" selection-start-column="2" selection-end-line="57" selection-end-column="2" />
             </state>
           </provider>
@@ -178,12 +173,12 @@
       <workItem from="1533989843741" duration="960000" />
       <workItem from="1533990827403" duration="2240000" />
       <workItem from="1533999068362" duration="1162000" />
-      <workItem from="1534007123897" duration="3257000" />
+      <workItem from="1534007123897" duration="3918000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8231000" />
+    <option name="totallyTimeSpent" value="8892000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -202,7 +197,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32848233" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32848233" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -234,7 +229,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sections/Getting Started/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
+        <state relative-caret-position="812">
           <caret line="57" column="2" selection-start-line="57" selection-start-column="2" selection-end-line="57" selection-end-column="2" />
         </state>
       </provider>
