@@ -1,4 +1,16 @@
 #include <iostream>
+#include <climits>
+#include <cfloat>
+
+using std::cout;
+using std::cin;
+using std::endl;
+
+// This is a global variable since it's not declared within any block of code.
+// It can be access from anywhere in the program.
+// Global variables are automatically initialised to 0.
+// They should be avoided because they make it difficult to debug the code.
+int randomVariable;
 
 int main() {
 
@@ -23,6 +35,57 @@ int main() {
     int value2 = 5; // C-like initialisation.
     int value3 (5); // Constructor initialisation.
     int value4 {5}; // C++11 list initialisation.
+
+    // All of the variables defined in this code block are local variables.
+    // They are local to main.
+
+    // The compiler checks locally for randomVariable first, then globally.
+    // Hence the statement prints 5. To access a global variable use
+    // :: without specifying a namespace.
+    int randomVariable = 5;
+    cout << "Local scope: " << randomVariable << endl; // Outputs 5.
+    cout << "Global scope: " << ::randomVariable << endl; // Outputs 0.
+
+    // C++ primitive types:
+    // Character types. Represents characters.
+    char char1 {'A'};           // 1 byte.
+    char16_t char2 {'B'};       // 2 bytes.
+    char32_t char3 {'C'};       // 4 bytes.
+    wchar_t  char4 {'D'};       // Larger character set.
+    // Integral types. Represents whole numbers.
+    short short1 {50};          // Or short int. 2 bytes.
+    int int1 {-90};              // Or signed int int1 {20}. All integral types signed by default. 2 bytes.
+    long long1 {-20005};         // 4 bytes.
+    long long longlong1 {20000000010020203}; // 8 bytes.
+    unsigned short ushort {233}; // Unsigned types have double the positive range, and none of the negative range.
+    unsigned int uint {2000};
+    unsigned long ulong {20001231};
+    unsigned long long ulonglong {1'023'010'230}; // Can use single quotes for large numbers, must be in between.
+    // Floating types. Represents whole numbers and decimals.
+    float float1 = -5.5f;               // Precise to 7 decimals. 4 bytes.
+    double double1 = 3.14159;           // Precise to 15 decimals. 8 bytes.
+    long double longdouble1 = 2.7e2;    // Precise to 19 decimals. 12 bytes. Can use scientific notation.
+    // Boolean type. Represents true and false.
+    bool bool1 {true};          // 1 byte.
+
+    // Overflow.
+    short overflow = 65537; // Overflows since limit is 65536. Result is 1.
+    // short overflow2 {65537}; // List initialiser syntax prevents overflow.
+    cout << "Overflow: " << overflow << endl;
+
+    // Truncation.
+    int truncate = 55.2; // Integer only keeps the integer, and truncates the decimals.
+    // int truncate2 {55.2} // List initialiser syntax prevents truncation, or narrowing conversions in general.
+    cout << "Truncation: " << truncate << "\n\n";
+
+    // sizeof operator can tell you the size of a type or variable.
+    // It gets this information from <climits> and <cfloat>.
+    cout << "Size of int: " << sizeof(int) << endl;
+    cout << "Size of unsigned int: " << sizeof(unsigned int) << endl;
+    cout << "Min/max integer: " << INT_MIN << "/" << INT_MAX << endl;
+    cout << "Size of double: " << sizeof(double) << endl;
+    cout << "Size of truncate variable: " << sizeof(truncate) << endl;
+    cout << "Size of truncate variable: " << sizeof truncate << "\n\n";
 
     return 0;
 }
