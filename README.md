@@ -7,10 +7,10 @@
   * [Udemy: Beginning C++ Programming](https://www.udemy.com/beginning-c-plus-plus-programming/)
 ## Course Content
 * ✓ Introduction
-* Installation and Setup
-* Curriculum Overview
-* Getting Started
-* Structure of a C++ Program
+* ✓ Installation and Setup
+* ✓ Curriculum Overview
+* ✓ Getting Started
+* ✓ Structure of a C++ Program
 * Variables and Constants
 * Arrays and Vectors
 * Statements and Operators
