@@ -2,6 +2,10 @@
 #include <climits>
 #include <cfloat>
 
+// #define directive using in older code to define constant, bad practice now.
+// Preprocessor replaces identifier with value.
+#define days_in_year 365
+
 using std::cout;
 using std::cin;
 using std::endl;
@@ -87,6 +91,15 @@ int main() {
     cout << "Size of truncate variable: " << sizeof(truncate) << endl;
     cout << "Size of truncate variable: " << sizeof truncate << "\n\n";
 
+    // Constants make it clear that a value should never be changed.
+    // The compiler enforces this concept.
+    const int months_in_year {12};
+    const double pi = {3.14159};
+    // months_in_year = 13; // Compile time error.
+    cout << "#define constant: " << days_in_year << endl;
+
+    cout << "Hell"
+
     return 0;
 }
 
@@ -105,4 +118,85 @@ void employee_profile() {
     //----DO NOT MODIFY THE CODE BELOW THIS LINE----
     cout << name << " " << age << " " << hourly_wage;
 }
+
+Challenge 2: Process cleaning service order.
+#include <iostream>
+using namespace std;
+int main() {
+  const double VAT {0.06};
+  const double cost_small {25.0};
+  const double cost_large {35.0};
+  const int days_valid {30};
+  int rooms_small;
+  int rooms_large;
+
+  cout << "Hello, welcome to Frank's Carpest Cleaning Server" << "\n\n";
+
+  cout << "Price per small room: £" << cost_small << "\n";
+  cout << "Price per large room: £" << cost_large << "\n\n";
+
+  cout << "How many small rooms will you like to clean? ";
+  cin >> rooms_small;
+  cout << "How many large rooms will you like to clean? ";
+  cin >> rooms_large;
+  cout << "\n";
+
+  const double cost {rooms_small*cost_small + rooms_large*cost_large};
+  const double tax {cost*VAT};
+  const double total_cost {cost + tax};
+
+  cout << "Number of small rooms: " << rooms_small << "\n";
+  cout << "Number of large rooms: " << rooms_large << "\n";
+  cout << "Price per small room: £" << cost_small << "\n";
+  cout << "Price per large room: £" << cost_large << "\n";
+  cout << "Cost: £" << cost << "\n";
+  cout << "Tax: £" << tax << "\n";
+  cout << "================================================" << "\n";
+  cout << "Total cost: £" << total_cost << "\n";
+  cout << "Estimate is valid for " << days_valid << " days";
+}
+
+Quiz 1: Data values that do not change while a program executes are ________.
+Literals.
+
+Quiz 2: All variables must have a ________ before they are used in a program.
+Definition.
+
+Quiz 3: Storage locations in memory are represented by ________.
+Variables.
+
+Quiz 4: String literals are always enclosed in ________.
+Double quotes "".
+
+Quiz 5: Character literals are always enclosed in ________.
+Single quotes ''.
+
+Quiz 6: A variable that can hold only true or false values is of type ________.
+bool.
+
+Quiz 7: The following expression determines how many bytes of storage are required
+to store a double on your computer:
+sizeof(double).
+
+Quiz 8: What is the output  from the following code:
+int x;
+cout << x << endl;
+
+Undefined.
+
+Quiz 9: Which variable definition is not legal in C++?
+int x = 100. (No semi-colon).
+
+Quiz 10: Which line in the following code will generate a compiler error?
+#include <iostream>
+using namespace std;
+int main() {
+   const int min_age = 18;
+   const int max_age = 35;
+   min_age = 21;
+   cout << “Minimum age is “ << min_age << endl;
+   return 0;
+}
+
+The min_age = 21 line.
  */
