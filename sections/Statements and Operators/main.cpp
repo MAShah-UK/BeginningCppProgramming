@@ -3,8 +3,8 @@ using namespace std;
 
 int main() {
     // Assignment operator: You can assign one or more variables in a row.
-    int a {0};
-    int b {0};
+    int a {}; // Empty braces initialise variable to 0.
+    int b {};
     a = b = 100;
     cout << "a: " << a << " b: " << b << "\n\n";
 
@@ -37,15 +37,63 @@ int main() {
     inc = 5;
     // Prefix: adds one to inc, THEN returns;
     cout << "Inc: " << ++inc << endl;
-    cout << "Inc: " << inc << endl;
+    cout << "Inc: " << inc << "\n\n";
 
-    // Type conversion.
-    int miles = 10;
-    int hours = 3;
+    // Type casting/conversion.
+    int miles = 10, hours = 3; // Can declare and initialise multiple variables in one line.
     double mph_wrong = miles / hours; // .33 will be dropped, must convert one type to double.
     cout << "Wrong mph calculation: " << mph_wrong << endl;
     double mph = static_cast<double>(miles) / hours; // Static cast tells compiler to convert int to double.
-    cout << "Correct mph calculation: " << mph << endl;
+    // double mph = (double) miles / hour // Old C-style cast. Should be avoided as it is unsafe.
+    cout << "Correct mph calculation: " << mph << "\n\n";
+
+    // Equality operators: return true or false for an expression.
+    bool equal_result {false};
+    bool not_equal_result {false};
+    int num1 {}, num2 {};
+
+    cout << "Enter two integers separated by a space: ";
+    cin >> num1 >> num2;
+    equal_result = (num1 == num2);
+    not_equal_result = (num1 != num2);
+    // For Booleans: Displays 1 for true, and 0 for false by default.
+    cout << "Comparison result (equals): " << equal_result << endl;
+    cout << "Comparison result (not equals): " << not_equal_result << endl;
+    // For Booleans: Displays true, and false instead of 1 and 0.
+    cout << boolalpha;
+    cout << "Comparison result (equals): " << equal_result << endl;
+    cout << "Comparison result (not equals): " << not_equal_result << endl;
+    // This should be false, but due to limited precision, it is not.
+    cout << "12.0 + 11.999...: " << (12.0 == 11.9999999999999999999999999999) << "\n\n";
+
+    // Relational operators: Used to determine relationships between numbers.
+    cout << "Enter two integers separated by a space: ";
+    cin >> num1 >> num2;
+    cout << "Result of >: " << (num1 > num2) << endl;
+    cout << "Result of >=: " << (num1 >= num2) << endl;
+    cout << "Result of <: " << (num1 < num2) << endl;
+    cout << "Result of <=: " << (num1 <= num2) << endl;
+
+    cout << "Enter a number greater than 10: ";
+    cin >> num1;
+    cout << num1 << " greater than 10? " << (num1 > 10) << "\n\n";
+
+    // Logical operators: Used to manipulate other boolean expressions.
+    cout << "Enter an integer between 10 and 20: ";
+    cin >> num1;
+    cout << "Is it between 10 and 20? " << (num1 > 10 && num1 < 20) << endl;
+    cout << "Is it lesser than 10 or greater than 20? " << (num1 < 10 || num1 > 20) << endl;
+
+    // Compound assignment operators: Simplifies repetitive assignment operations.
+    int a = 5;
+    a += 5; // a = a + 5. a is now 10.
+    a -= 5; // a = a - 5. a is now 5.
+    a *= 2; // a = a * 2. a is now 10.
+    a /= 2; // a = a / 2. a is now 5.
+    a %= 3; // a = a % 3. a is now 2.
+    // It also works with bitwise operators.
+
+    
 
     return 0;
 }
