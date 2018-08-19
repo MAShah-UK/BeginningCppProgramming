@@ -7,7 +7,11 @@ using namespace std;
 // All of the functions must be declared before they are actually used.
 
 // Function prototype / forward declaration.
-int add_numbers(int, int); // Parameter names are optional.
+// The third parameter has a default argument in case one isn't passed in.
+int add_numbers(int a, int b, int c = 0); // Parameter names are optional.
+double add_numbers(double a, double b, double c = 0, double d = 0);
+// const makes it clear that the original array will never be modified.
+double find_mean(const double data [], size_t size);
 
 void outputWorld() {
     cout << "World";
@@ -16,7 +20,7 @@ void outputWorld() {
 // This void function (procedure) returns nothing and takes no arguments.
 void outputHelloWorld() {
     cout << "Hello ";
-    outputWorld();
+    outputWorld(); // Can call other functions within functions.
     return; // Optional for procedure.
 }
 
@@ -39,16 +43,38 @@ int main() {
     cout << "Using procedures to output text: ";
     outputHelloWorld();
     cout << endl;
+    // The third argument was optional. It uses the default value.
     cout << "Using a function to add 3 and 5: " << add_numbers(3, 5) << endl;
+    // ints auto casted to double.
+    cout << "Using a function to add 1, 2, 3, and 4: " << add_numbers(1, 2, 3, 4) << endl;
+    // Pass array to function.
+    double ages [] {13, 15, 14, 15, 12, 14, 15, 15};
+    cout << "Using a function find mean of array: " << find_mean(ages, 8) << endl;
 
     return 0;
 }
 
-//This function takes two arguments and returns an integer result.
-int add_numbers(int a, int b) {
-    // a and b are passed-by-value/copied, so changing them
-    // won't affect the variables that were passed in.
-    return a + b; // Returned data must match return type.
+// This function takes three arguments and returns an integer result.
+int add_numbers(int a, int b, int c) {
+    // The arguments are passed-by-value/copied, so changing them
+    // won't affect the original variables that were passed in.
+    return a + b + c; // Returned data must match return type.
+}
+
+// Function overloading allows defining functions with the same name,
+// but modified behaviour.
+double add_numbers(double a, double b, double c, double d) {
+    return a + b + c + d;
+}
+
+// Raw array and array size should be passed together.
+double find_mean(const double data [], size_t size) {
+    double sum {};
+    for(size_t i {}; i < size; i++) {
+        sum += data[i];
+    }
+    double mean = sum/size;
+    return mean;
 }
 
 /*
@@ -59,14 +85,10 @@ using namespace std;
 void c_math_functions() {
     double bill_total {102.78};
     int number_of_guests {5};
-    //DO NOT MODIFY THE CODE ABOVE THIS LINE----
-    //----WRITE YOUR CODE BELOW THIS LINE----
     double individual_bill {bill_total/number_of_guests};
     double individual_bill_1 {floor(individual_bill)};
     double individual_bill_2 {ceil(individual_bill)};
     double individual_bill_3 {round(individual_bill*100)/100};
-    //----WRITE YOUR CODE ABOVE THIS LINE----
-    //----DO NOT MODIFY THE CODE BELOW THIS LINE----
     cout << "The individual bill at location 1 will be $" << individual_bill_1
          << "\n" << "The individual bill at location 2 will be $" << individual_bill_2 << "\n"
          << "The individual bill at location 3 will be $" << individual_bill_3;
@@ -76,23 +98,14 @@ Challenge 2: Use functions to convert between temperature units.
 #include <iostream>
 #include <cmath>
 using namespace std;
-//----DO NOT MODIFY THE CODE ABOVE THIS LINE----
-//----WRITE YOUR FUNCTION PROTOTYPES BELOW THIS LINE----
 double fahrenheit_to_celsius(double);
 double fahrenheit_to_kelvin(double);
-//----WRITE YOUR FUNCTION PROTOTYPES ABOVE THIS LINE----
-//----DO NOT MODIFY THE CODE BELOW THIS LINE----
 void temperature_conversion(double fahrenheit_temperature) {
-    //----DO NOT MODIFY THE CODE ABOVE THIS LINE----
-    //----WRITE YOUR FUNCTION CALLS BELOW THIS LINE----
     double celsius_temperature {fahrenheit_to_celsius(fahrenheit_temperature)};
     double kelvin_temperature {fahrenheit_to_kelvin(fahrenheit_temperature)};
-    //----WRITE YOUR FUNCTION CALLS ABOVE THIS LINE----
-    //----DO NOT MODIFY THE CODE BELOW THIS LINE----
-    cout << "The fahrenheit temperature " << fahrenheit_temperature << " degrees is equivalent to " << celsius_temperature << " degrees celsius and " << kelvin_temperature << " degrees kelvin.";
+    cout << "The fahrenheit temperature " << fahrenheit_temperature << " degrees is equivalent to "
+         << celsius_temperature << " degrees celsius and " << kelvin_temperature << " degrees kelvin.";
 }
-//----DO NOT MODIFY THE CODE ABOVE THIS LINE----
-//----WRITE YOUR FUNCTION DEFINITIONS BELOW THIS LINE----
 double fahrenheit_to_celsius(double fahrenheit_temperature) {
     double f2c = 5.0/9.0 * (fahrenheit_temperature-32);
     return round(f2c);
@@ -100,5 +113,63 @@ double fahrenheit_to_celsius(double fahrenheit_temperature) {
 double fahrenheit_to_kelvin(double fahrenheit_temperature) {
     double f2k = 5.0/9.0*(fahrenheit_temperature-32) + 273;
     return round(f2k);
+}
+
+Challenge 3: Use default arguments to cover the base case for the order.
+#include <iostream>
+using namespace std;
+void print_grocery_list(int apples = 3, int oranges = 7, int mangos = 13);
+void modify_grocery_list() {
+    print_grocery_list();
+    print_grocery_list(5);
+    print_grocery_list(7, 11);
+}
+void print_grocery_list(int apples, int oranges, int mangos) {
+    cout << apples << " apples" << "\n" << oranges << " oranges" << "\n" << mangos << " mangos" << "\n";
+}
+
+Challenge 4: Use function overloading to calculate the area of a square or rectangle.
+#include <iostream>
+#include <cmath>
+using namespace std;
+int find_area(int);
+double find_area(double, double);
+void area_calc() {
+    int square_area = find_area(2);
+    double rectangle_area = find_area(4.5, 2.3);
+    cout << "The area of the square is " << square_area << "\n" << "The area of the rectangle is "
+         << rectangle_area;
+}
+int find_area(int side_length) {
+    return pow(side_length, 2);
+}
+double find_area(double length, double width) {
+    return length*width;
+}
+
+Challenge 5: Practice working with arrays passed to methods. Process guest list.
+#include <iostream>
+#include <string>
+#include <typeinfo>
+using namespace std;
+string print_guest_list(const string [], size_t);
+void clear_guest_list(string [], size_t);
+void event_guest_list() {
+    string guest_list[] {"Larry", "Moe", "Curly"};
+    size_t guest_list_size {3};
+    print_guest_list(guest_list, guest_list_size);
+    clear_guest_list(guest_list, guest_list_size);
+    print_guest_list(guest_list, guest_list_size);
+}
+string print_guest_list(const string guest_list [], size_t guest_list_size) {
+    for (size_t i {0}; i < guest_list_size; i++) {
+        cout << guest_list[i] << endl;
+    }
+    return typeid(guest_list).name();
+}
+void clear_guest_list(string guest_list [], size_t guest_list_size) {
+    for (size_t i {0}; i < guest_list_size; i++) {
+        guest_list[i] = " ";
+    }
 }
  */
