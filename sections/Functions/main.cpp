@@ -2,6 +2,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
+#include <string>
 using namespace std;
 
 // All of the functions must be declared before they are actually used.
@@ -12,6 +13,12 @@ int add_numbers(int a, int b, int c = 0); // Parameter names are optional.
 double add_numbers(double a, double b, double c = 0, double d = 0);
 // const makes it clear that the original array will never be modified.
 double find_mean(const double data [], size_t size);
+// inline tells the compiler to consider running the code directly without
+// a function call. Compilers usually optimise for this anyway.
+inline void increment_integer(int&, int);
+int counter();
+unsigned long long factorial(unsigned long long);
+unsigned long long fibonacci(unsigned long long);
 
 void outputWorld() {
     cout << "World";
@@ -50,6 +57,25 @@ int main() {
     // Pass array to function.
     double ages [] {13, 15, 14, 15, 12, 14, 15, 15};
     cout << "Using a function find mean of array: " << find_mean(ages, 8) << endl;
+    int value {4};
+    increment_integer(value, 1);
+    cout << "Using a function to increment a local variable: " << value << endl;
+    cout << "Static local variable value 1: " << counter() << endl;
+    cout << "Static local variable value 2: " << counter() << "\n\n";
+
+    // Scope limits the visibility of the variable to within a code block.
+    string outerScope {"yes"};
+    { // Code block creates a scope within a scope.
+        string innerScope {"yes"};
+        cout << "Can inner code block see outer scope variable? " << outerScope << endl;
+        cout << "Can inner code block see inner scope variable? " << innerScope << endl;
+    }
+    cout << "Can outer code block see outer scope variable? " << outerScope << endl;
+    cout << "Can outer code block see inner scope variable? " << "no" << "\n\n";
+
+    // Recursive functions call themselves repeatedly to find the solution.
+    cout << "The factorial of 8 is: " << factorial(8) << endl;
+    cout << "The fibonacci for 10 is: " << fibonacci(10) << endl;
 
     return 0;
 }
@@ -75,6 +101,35 @@ double find_mean(const double data [], size_t size) {
     }
     double mean = sum/size;
     return mean;
+}
+
+// Pass-by-reference doesn't copy the argument. Instead it directly
+// references the argument in memory. Changing the parameter changes
+// the provided argument directly.
+void increment_integer(int &source, int amount) {
+    source += amount;
+}
+
+int counter() {
+    // static variables are initialised the first time the function is called.
+    // They then persist until the program ends.
+    static int count {};
+    count++;
+    return count;
+}
+
+unsigned long long factorial(unsigned long long n) {
+    if(n == 0) {
+        return 1; // Base case.
+    }
+    return n * factorial(n-1); // Recursive case.
+}
+
+unsigned long long fibonacci(unsigned long long n) {
+    if(n <= 1) {
+        return n;
+    }
+    return factorial(n-1) + fibonacci(n-2);
 }
 
 /*
@@ -172,4 +227,239 @@ void clear_guest_list(string guest_list [], size_t guest_list_size) {
         guest_list[i] = " ";
     }
 }
+
+Challenge 6: Practice working with pass-by-reference parameters.
+#include <iostream>
+#include <string>
+#include <typeinfo>
+using namespace std;
+string print_guest_list(const string&, const string&, const string&);
+void clear_guest_list(string&, string&, string&);
+void event_guest_list() {
+    string guest_1 {"Larry"};
+    string guest_2 {"Moe"};
+    string guest_3 {"Curly"};
+    print_guest_list(guest_1, guest_2, guest_3);
+    clear_guest_list(guest_1, guest_2, guest_3);
+    print_guest_list(guest_1, guest_2, guest_3);
+}
+string print_guest_list(const string &guest_1, const string &guest_2, const string &guest_3) {
+    cout << guest_1 << endl << guest_2 << endl << guest_3 << endl;
+    string test_1 = typeid(guest_1).name(), test_2 = typeid(guest_2).name(), test_3 = typeid(guest_3).name();
+    return test_1 + test_2 + test_3;
+}
+void clear_guest_list(string &guest_1, string &guest_2, string &guest_3) {
+    guest_1 = guest_2 = guest_3 = " ";
+}
+
+Challenge 7: Use recursion to double balance for n days.
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int function_activation_count {0};
+double a_penny_doubled_everyday(int days, double amount = 0.01);
+void amount_accumulated() {
+    double total_amount {a_penny_doubled_everyday(25)};
+    cout <<  "If I start with a penny and doubled it every day for 25 days, I will have $" << setprecision(10) << total_amount;
+}
+double a_penny_doubled_everyday(int days, double amount) {
+    function_activation_count++;
+    if(days == 1) {
+        return amount;
+    }
+    return a_penny_doubled_everyday(days-1, amount*2);
+}
+int test_function_activation_count() {
+    return function_activation_count;
+}
+
+Challenge 8: Rewrite number management system using material from this section.
+#include <iostream>
+#include <vector>
+using namespace std;
+void print_menu();
+char getInput();
+void print_numbers(const vector<int>&);
+void add_number(vector<int>&);
+void calculate_mean(const vector<int>&);
+void find_smallest(const vector<int>&);
+void find_largest(const vector<int>&);
+int main() {
+  cout << "Welcome to the number collector." << "\n\n";
+  char input {};
+  vector <int> numbers;
+  do {
+    print_menu();
+    input = getInput();
+    switch(input) {
+      case 'P': {
+        print_numbers(numbers);
+        break;
+      }
+      case 'A': {
+        add_number(numbers);
+        break;
+      }
+      case 'M': {
+        calculate_mean(numbers);
+        break;
+      }
+      case 'S': {
+        find_smallest(numbers);
+        break;
+      }
+      case 'L': {
+        find_largest(numbers);
+        break;
+      }
+      case 'Q': {
+        cout << "Quitting.";
+        break;
+      }
+      default: cout << "Unknown selection, please try again.";
+    }
+    cout << "\n\n";
+  } while (input != 'q' && input != 'Q');
+}
+void print_menu() {
+    cout << "[MENU]" << endl;
+    cout << "P - Print numbers..." << endl;
+    cout << "A - Add a number..." << endl;
+    cout << "M - Calculate mean..." << endl;
+    cout << "S - Find smallest number..." << endl;
+    cout << "L - Find largest number..." << endl;
+    cout << "Q - Quit..." << "\n\n";
+}
+char getInput() {
+  char input {};
+  cout << "Pick an option: ";
+  cin >> input;
+  return toupper(input);
+}
+void print_numbers(const vector<int> &numbers) {
+  if(numbers.size() == 0) {
+    cout << "[] - The list is empty.";
+  } else {
+    cout << "[";
+    for(int number : numbers) {
+      cout << " " << number;
+    }
+    cout << " ]";
+  }
+}
+void add_number(vector<int> &numbers) {
+  int number_add {};
+  cout << "Enter number to add: ";
+  cin >> number_add;
+  numbers.push_back(number_add);
+  cout << number_add << " was added.";
+}
+void calculate_mean(const vector<int> &numbers) {
+    if(numbers.size() > 0) {
+    double sum {};
+    for(int number : numbers) {
+      sum += number;
+    }
+    const double mean {sum/numbers.size()};
+    cout << "The mean is " << mean << ".";
+  } else {
+    cout << "Error: List is empty.";
+  }
+}
+void find_smallest(const vector<int> &numbers) {
+  if(numbers.size() > 0) {
+    int number_smallest {};
+    if(numbers.size() > 0) {
+      number_smallest = numbers.at(0);
+    }
+    for(int i = 1; i < numbers.size(); i++) {
+      if(numbers.at(i) < number_smallest) {
+        number_smallest = numbers.at(i);
+      }
+    }
+    cout << "The smallest number is " << number_smallest << ".";
+  } else {
+    cout << "Error: List is empty.";
+  }
+}
+void find_largest(const vector<int> &numbers) {
+  if(numbers.size() > 0) {
+    int number_largest {};
+    if(numbers.size() > 0) {
+      number_largest = numbers.at(0);
+    }
+    for(int i = 1; i < numbers.size(); i++) {
+      if(numbers.at(i) > number_largest) {
+        number_largest = numbers.at(i);
+      }
+    }
+    cout << "The largest number is " << number_largest << ".";
+  } else {
+    cout << "Error: List is empty.";
+  }
+}
+
+Quiz 1: A function can have ________ parameters.
+zero or more
+
+Quiz 2: Variables defined in the body of a function that are
+visible only to the function are called ________ variables.
+local
+
+Quiz 3: Variables defined in functions whose values persist from
+call to call are called ________ variables.
+static
+
+Quiz 4: The default manner in which passing parameters to
+functions is achieved in C++ ________.
+is pass-by-value
+
+Quiz 5: What is displayed by the following code?
+#include <iostream>
+using namespace std;
+void func(int x, int y, int z) {
+   x = y + z;
+   y = 10;
+   x = 20;
+}
+int main() {
+   int a = 10, b = 20, c = 30;
+   func(a, b, c);
+   cout << a << " " << b << " " <<  c << endl;
+   return 0;
+}
+
+10 20 30
+
+Quiz 6: What is displayed by the following code?
+#include <iostream>
+using namespace std;
+void func(int &x, int &y, int &z) {
+   x = y + z;
+   y = 10;
+   x = 20;
+}
+int main() {
+   int a = 10, b = 20, c = 30;
+   func(a, b, c);
+   cout << a << " " << b << " " <<  c << endl;
+   return 0;
+}
+
+20 10 30
+
+Quiz 7: ________ arguments can be automatically supplied to a function
+when no arguments are provided when the function is called.
+Default
+
+Quiz 8: When a function calls itself, either directly or indirectly,
+this is defined as ________.
+recursion
+
+Quiz 9: Before we can call a function in C++, it must be defined or have a ________ provided.
+prototype
+
+Quiz 10: Creating multiple versions of the same function name
+that accepts different parameters is called ________.
+function overloading
  */
