@@ -3,4 +3,4 @@ project(OOP___Classes_and_Objects)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(OOP___Classes_and_Objects main.cpp)
+add_executable(OOP___Classes_and_Objects main.cpp Account.cpp Account.h Player.cpp Player.h)
