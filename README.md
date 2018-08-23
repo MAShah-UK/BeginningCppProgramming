@@ -11,14 +11,14 @@
 * ✓ Curriculum Overview
 * ✓ Getting Started
 * ✓ Structure of a C++ Program
-* Variables and Constants
-* Arrays and Vectors
-* Statements and Operators
-* Controlling Program Flow
-* Characters and Strings
-* Functions
-* Pointers and References
-* OOP - Classes and Objects
+* ✓ Variables and Constants
+* ✓ Arrays and Vectors
+* ✓ Statements and Operators
+* ✓ Controlling Program Flow
+* ✓ Characters and Strings
+* ✓ Functions
+* ✓ Pointers and References
+* ✓ OOP - Classes and Objects
 * Operator Overloading
 * Inheritance
 * Polymorphism
