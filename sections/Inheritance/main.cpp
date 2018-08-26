@@ -76,3 +76,52 @@ int main() {
 
     return 0;
 }
+
+/*
+Quiz 1: ________ is when you derive a new class from an existing class.
+Inheritance
+
+Quiz 2: The following base class members are always inherited by a derived class.
+Public, protected, and private.
+
+Quiz 3: ________ is when a derived class has 2 or more base classes.
+Multiple inheritance
+
+Quiz 4: A public data member of a base class is ________ in
+its derived class when using public inheritance.
+public
+
+Quiz 5: A private data member of a base class is ________ in
+its derived class when using public inheritance.
+not accessible
+
+Quiz 6: A collection of classes related with via
+inheritance relationships is called a(n) ________.
+inheritance hierarchy
+
+Quiz 7: Which statement is NOT always true given the class declarations below?
+class A: public B { };
+class C: public B { };
+class D: public C { };
+
+A is a C.
+
+Quiz 8: Which statement below is NOT true about inheritance?
+Inheritance always improves the quality of a design.
+
+Quiz 9: Given the class declarations below. In what order are the class
+constructors executed when we create an object of type D?
+class A: public B { };
+class C: public B { };
+class D: public C { };
+
+B > C > D
+
+Quiz 10: Given the class declarations below. In what order are the
+class destructors executed when we create an object of type D?
+class A: public B { };
+class C: public B { };
+class D: public C { };
+
+D > C > B.
+ */
