@@ -2,9 +2,9 @@
 
 #include <iostream>
 
-Account::Account()
-    : Account {"Generic Account"} {
-
+Account::Account(std::string name, double balance)
+        : name {name}, balance {balance} {
+    // std::cout << " Account initialised" << std::endl;
 }
 
 Account::Account(const Account &source)
@@ -12,13 +12,8 @@ Account::Account(const Account &source)
 
 }
 
-Account::Account(std::string name, double balance)
-    : name {name}, balance {balance} {
-    std::cout << "[" << name << "]" << " Account initialised" << std::endl;
-}
-
 Account::~Account() {
-    std::cout << "[" << name << "]" << " Account destroyed" << std::endl;
+    // std::cout << " Account destroyed" << std::endl;
 }
 
 // Not needed since the compiler does memberwise assignment by default.
@@ -44,10 +39,25 @@ void Account::set_balance(double balance) {
     Account::balance = balance;
 }
 
-void Account::deposit(double amount) {
-    std::cout << "[" << name << "]" << " Account deposit called with " << amount << std::endl;
+bool Account::deposit(double amount) {
+    bool is_valid = (amount > 0);
+    if(is_valid) {
+        balance += amount;
+    }
+    return is_valid;
 }
 
-void Account::withdraw(double amount) {
-    std::cout << "[" << name << "]" << " Account withdraw called with " << amount << std::endl;
+bool Account::withdraw(double amount) {
+    bool is_valid = (amount > 0 &&
+                     balance - amount >= 0);
+    if(is_valid) {
+        balance -= amount;
+    }
+    return is_valid;
+}
+
+std::ostream &operator<<(std::ostream &os, const Account &rhs) {
+    static constexpr char POUND = 156;
+    std::cout << "[" << rhs.get_name() << "] " << POUND << rhs.get_balance();
+    return os;
 }

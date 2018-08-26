@@ -2,26 +2,21 @@
 #include "Savings_Account.h"
 
 // Constructors are called from the root class to the most derived class.
-Savings_Account::Savings_Account()
-    : Savings_Account {"Generic Savings Account"} {
-
+// Specifies a base class constructor, otherwise base class default constructor is called.
+Savings_Account::Savings_Account(std::string name, double balance, double interest_rate)
+        : Account {name, balance}, interest_rate {interest_rate} {
+    // std::cout << "[" << get_name() << "]" << " Savings_Account initialised" << std::endl;
 }
 
 // Source is sliced from Savings_Account to Account.
 Savings_Account::Savings_Account(const Savings_Account &source)
     : Account {source}, interest_rate {source.interest_rate} {
-
-}
-
-// Specifies a base class constructor, otherwise base class default constructor is called.
-Savings_Account::Savings_Account(std::string name, double balance, double interest_rate)
-    : Account {name, balance}, interest_rate {interest_rate} {
-    std::cout << "[" << get_name() << "]" << " Savings_Account initialised" << std::endl;
+    // std::cout << "[" << get_name() << "]" << " Savings_Account initialised" << std::endl;
 }
 
 // Destructors are called from the most derived class to the root class.
 Savings_Account::~Savings_Account() {
-    std::cout << "[" << get_name() << "]" << " Savings_Account destroyed" << std::endl;
+    // std::cout << "[" << get_name() << "]" << " Savings_Account destroyed" << std::endl;
 }
 
 // Not needed since the compiler does memberwise assignment by default
@@ -38,10 +33,30 @@ Savings_Account &Savings_Account::operator=(const Savings_Account &rhs) {
     return *this;
 }
 
-void Savings_Account::deposit(double amount) {
-
+double Savings_Account::get_interest_rate() const {
+    return interest_rate;
 }
 
-void Savings_Account::withdraw(double amount) {
+void Savings_Account::set_interest_rate(double interest_rate) {
+    this->interest_rate = interest_rate;
+}
 
+// Method is redefined from Account.
+bool Savings_Account::deposit(double amount) {
+    double interest_amount = amount/100.0 * interest_rate;
+    amount += interest_amount;
+    return Account::deposit(amount); // Call base class version.
+}
+
+// Method is inherited from Account.
+//void Savings_Account::withdraw(double amount) {
+//  // ...
+//}
+
+std::ostream &operator<<(std::ostream &os, const Savings_Account &rhs) {
+    static constexpr char POUND = 156;
+    std::cout << "[" << rhs.get_name() << "] "
+              << POUND << rhs.get_balance() << " "
+              << rhs.get_interest_rate() << '%';
+    return os;
 }

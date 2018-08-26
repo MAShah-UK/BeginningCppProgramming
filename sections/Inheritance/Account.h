@@ -6,9 +6,13 @@ class Account {
     std::string name;
     double balance;
 public:
-    Account();
+    // TODO: Should constexpr variables be public? Or should I stick to getters and setters?
+    // These are compile time constants.
+    static constexpr char DEF_NAME [] {"Generic Account"};
+    static constexpr double DEF_BALANCE {0.00};
+
+    Account(std::string name = DEF_NAME, double balance = DEF_BALANCE);
     Account(const Account &source);
-    Account(std::string name, double balance = 0.0);
     ~Account();
 
     Account &operator=(const Account &rhs);
@@ -18,6 +22,8 @@ public:
     double get_balance() const;
     void set_balance(double balance);
 
-    void deposit(double amount);
-    void withdraw(double amount);
+    bool deposit(double amount);
+    bool withdraw(double amount);
 };
+
+std::ostream &operator<<(std::ostream &os, const Account &rhs);
