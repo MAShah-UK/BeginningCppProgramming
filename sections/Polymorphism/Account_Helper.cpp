@@ -31,4 +31,5 @@ void Account_Helper::delete_accounts(std::vector<Account*> &accounts) {
     for(Account *account: accounts) {
         delete account;
     }
+    accounts.clear(); // Remove dangling pointers.
 }

@@ -10,6 +10,7 @@ class Checking_Account: public Account {
 public:
     Checking_Account(std::string name = DEF_NAME, double balance = DEF_BALANCE);
 
+    // Override ensures that the method signature/return match a base class method.
     bool deposit(double amount) override;
     bool withdraw(double amount) override;
 };

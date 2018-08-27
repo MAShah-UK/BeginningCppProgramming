@@ -13,7 +13,7 @@ public:
 
     Account(std::string name = DEF_NAME, double balance = DEF_BALANCE);
     Account(const Account &source);
-    virtual ~Account();
+    virtual ~Account(); // Ensures that correct destructor is called if base class pointer is deleted.
 
     Account &operator=(const Account &rhs);
 
@@ -22,6 +22,7 @@ public:
     double get_balance() const;
     void set_balance(double balance);
 
+    // Virtual tells the compiler to bind method calls at runtime/dynamically/late.
     virtual bool deposit(double amount);
     virtual bool withdraw(double amount);
 };
