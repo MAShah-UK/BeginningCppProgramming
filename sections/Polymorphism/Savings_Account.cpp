@@ -33,30 +33,23 @@ Savings_Account &Savings_Account::operator=(const Savings_Account &rhs) {
     return *this;
 }
 
-double Savings_Account::get_interest_rate() const {
-    return interest_rate;
-}
-
-void Savings_Account::set_interest_rate(double interest_rate) {
-    this->interest_rate = interest_rate;
-}
-
-// Method is redefined from Account.
+// Method is overridden from Account.
 bool Savings_Account::deposit(double amount) {
     double interest_amount = amount/100.0 * interest_rate;
     amount += interest_amount;
     return Account::deposit(amount); // Call base class version.
 }
 
-// Method is inherited from Account.
-//void Savings_Account::withdraw(double amount) {
-//  // ...
-//}
+void Savings_Account::print(std::ostream &os) const {
+    std::cout << "[" << get_name() << "] "
+              << POUND_SYMBOL << get_balance() << " "
+              << get_interest_rate() << '%';
+}
 
-std::ostream &operator<<(std::ostream &os, const Savings_Account &rhs) {
-    static constexpr char POUND = 156;
-    std::cout << "[" << rhs.get_name() << "] "
-              << POUND << rhs.get_balance() << " "
-              << rhs.get_interest_rate() << '%';
-    return os;
+double Savings_Account::get_interest_rate() const {
+    return interest_rate;
+}
+
+void Savings_Account::set_interest_rate(double interest_rate) {
+    this->interest_rate = interest_rate;
 }

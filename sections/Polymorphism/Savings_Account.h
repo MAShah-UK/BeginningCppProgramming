@@ -13,11 +13,10 @@ public:
 
     Savings_Account &operator=(const Savings_Account &rhs);
 
+    // Overrides base class methods.
+    void print(std::ostream &os) const override;
+    bool deposit(double amount) override;
+
     double get_interest_rate() const;
     void set_interest_rate(double interest_rate);
-
-    // Redefines base class method.
-    bool deposit(double amount) override;
 };
-
-std::ostream &operator<<(std::ostream &os, const Savings_Account &rhs);

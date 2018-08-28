@@ -23,6 +23,10 @@ Account &Account::operator=(const Account &rhs) {
     return *this;
 }
 
+void Account::print(std::ostream &os) const {
+    std::cout << "[" << get_name() << "] " << POUND_SYMBOL << get_balance();
+}
+
 const std::string &Account::get_name() const {
     return name;
 }
@@ -54,10 +58,4 @@ bool Account::withdraw(double amount) {
         balance -= amount;
     }
     return is_valid;
-}
-
-std::ostream &operator<<(std::ostream &os, const Account &rhs) {
-    static constexpr char POUND = 156;
-    std::cout << "[" << rhs.get_name() << "] " << POUND << rhs.get_balance();
-    return os;
 }
