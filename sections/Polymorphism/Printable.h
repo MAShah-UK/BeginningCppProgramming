@@ -8,7 +8,8 @@ class Printable {
 public:
     static constexpr char POUND_SYMBOL = 156;
 
-    virtual ~Printable();
+    // Tells compiler to use default destructor.
+    virtual ~Printable() = default;
 
     virtual void print(std::ostream &os) const = 0;
 };

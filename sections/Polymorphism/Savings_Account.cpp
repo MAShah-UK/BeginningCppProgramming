@@ -13,12 +13,6 @@ Savings_Account::Savings_Account(const Savings_Account &source)
     : Account {source}, interest_rate {source.interest_rate} {
     // std::cout << "[" << get_name() << "]" << " Savings_Account initialised" << std::endl;
 }
-
-// Destructors are called from the most derived class to the root class.
-Savings_Account::~Savings_Account() {
-    // std::cout << "[" << get_name() << "]" << " Savings_Account destroyed" << std::endl;
-}
-
 // Not needed since the compiler does memberwise assignment by default
 // for base class then for derived class.
 Savings_Account &Savings_Account::operator=(const Savings_Account &rhs) {

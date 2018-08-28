@@ -9,7 +9,6 @@ public:
 
     Savings_Account(std::string name = DEF_NAME, double balance = DEF_BALANCE, double interest_rate = DEF_INTEREST_RATE);
     Savings_Account(const Savings_Account &source);
-    ~Savings_Account();
 
     Savings_Account &operator=(const Savings_Account &rhs);
 
