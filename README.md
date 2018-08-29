@@ -19,10 +19,10 @@
 * ✓ Functions
 * ✓ Pointers and References
 * ✓ OOP - Classes and Objects
-* Operator Overloading
-* Inheritance
-* Polymorphism
-* Smart Pointers
+* ✓ Operator Overloading
+* ✓ Inheritance
+* ✓ Polymorphism
+* ✓ Smart Pointers
 * Exception Handling
 * I/O and Streams
 * The Standard Template Library (STL)
