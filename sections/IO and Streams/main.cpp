@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip> // Provides definitions for IO stream format manipulation.
 #include <vector>
+#include <fstream> // Provides definitions to read/write to files.
 
 class Main {
 public:
@@ -10,6 +11,8 @@ public:
         float_manipulators();
         field_manipulators();
         challenge1();
+
+        read_file();
         return 0;
     }
     void boolean_manipulators() {
@@ -80,7 +83,6 @@ public:
         // Same as before, but now the empty spaces are replaced with -.
         std::cout << "[" << std::setw(10) << std::setfill('-') << std::left << 1234.5 << "]" << std::endl;
     }
-
     void challenge1() {
         std::cout << "\nBEGIN: challenge1" << std::endl;
 
@@ -148,9 +150,48 @@ public:
                 std::cout << std::setw(column_width) << std::left << country_string
                           << std::setw(column_width) << city.name
                           << std::setw(column_width) << city.population
-                          << std::setw(column_width) << std::right << city.cost << std::endl;
+                          << std::fixed << std::setprecision(2) << std::setw(column_width) << std::right
+                            << city.cost << std::endl;
             }
         }
+    }
+
+    void read_file() {
+        std::cout << "\nBEGIN: read_file" << std::endl;
+
+        // File will be created automatically if it doesn't exist.
+        std::ofstream ofile {"../MyFile.txt"}; // Opens as output file.
+        if(ofile.is_open()) {
+            ofile << "Hi, my name is John Doe." << std::endl
+                  << "My age is 30.";
+        }
+        ofile.close();
+
+        std::cout << "Read line by line:" << std::endl;
+        // File won't be created automatically.
+        std::ifstream ifile {"../MyFile.txt"}; // Opens as input file.
+        int line_count {1};
+        if(ifile.is_open()) {
+            while(!ifile.eof()) {
+                std::string line;
+                std::getline(ifile, line);
+                std::cout << line_count << ") " << line << std::endl;
+                ++line_count;
+            }
+        }
+        ifile.close();
+
+        std::cout << "Read character by character:" << std::endl;
+        // File won't be created automatically.
+        ifile.open("../MyFile.txt"); // Opens as input file.
+        if(ifile.is_open()) {
+            while(!ifile.eof()) {
+                char c;
+                ifile.get(c);
+                std::cout << c;
+            }
+        }
+        ifile.close();
     }
 };
 
