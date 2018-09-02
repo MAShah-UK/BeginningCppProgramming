@@ -2,6 +2,7 @@
 #include <iomanip> // Provides definitions for IO stream format manipulation.
 #include <vector>
 #include <fstream> // Provides definitions to read/write to files.
+#include <set>
 
 class Main {
 public:
@@ -10,9 +11,13 @@ public:
         integer_manipulators();
         float_manipulators();
         field_manipulators();
-        challenge1();
+        challenge_display_table();
 
         read_file();
+        challenge_read_file("../MyFile.txt");
+        challenge_automatic_grader();
+        challenge_substring_counter();
+
         return 0;
     }
     void boolean_manipulators() {
@@ -83,8 +88,8 @@ public:
         // Same as before, but now the empty spaces are replaced with -.
         std::cout << "[" << std::setw(10) << std::setfill('-') << std::left << 1234.5 << "]" << std::endl;
     }
-    void challenge1() {
-        std::cout << "\nBEGIN: challenge1" << std::endl;
+    void challenge_display_table() {
+        std::cout << "\nBEGIN: challenge_display_table" << std::endl;
 
         struct City {
             std::string name;
@@ -190,11 +195,114 @@ public:
                 ifile.get(c);
                 std::cout << c;
             }
+            std::cout << std::endl;
         }
         ifile.close();
+    }
+    void challenge_read_file(std::string file_path) {
+        std::cout << "\nBEGIN: challenge_read_file" << std::endl;
+
+        std::ifstream file {file_path};
+        if(!file.is_open()) {
+            std::cerr << "Error opening file" << std::endl;
+            return;
+        }
+        while(!file.eof()) {
+            std::string line;
+            getline(file, line);
+            std::cout << line << std::endl;
+        }
+    }
+    void challenge_automatic_grader() {
+        std::cout << "\nBEGIN: challenge_automatic_grader" << std::endl;
+
+        std::ifstream file ("../responses.txt");
+        if(!file.is_open()) {
+            std::cerr << "Error: File not found.";
+            return;
+        }
+        std::string key;
+        std::getline(file, key);
+        std::cout << std::left << std::setw(15) << "Student Name"
+                  << std::right << std::setw(8) << "Score /5" << std::endl
+                  << std::setfill('=') << std::setw(23) << "" << std::setfill(' ') << std::endl;
+        int student_count {};
+        int sum {};
+        while(!file.eof()) {
+            ++student_count;
+            std::string name;
+            std::string answers;
+            int score {};
+            std::getline(file, name);
+            std::getline(file, answers);
+            for(size_t i {}; i < key.length(); ++i) {
+                if(answers.at(i) == key.at(i)) {
+                    ++score;
+                }
+            }
+            std::cout << std::left << std::setw(15) << name
+                      << std::right << std::setw(8) << score << std::endl;
+            sum += score;
+        }
+        const double average = static_cast<double>(sum)/student_count;
+        std::cout << std::setfill('=') << std::setw(23) << "" << std::setfill(' ') << std::endl
+                  << std::left << std::setw(15) << "Average score: "
+                  << std::fixed << std::setprecision(1) << std::right << std::setw(8) << average << std::endl;
+    }
+    void challenge_substring_counter() {
+        std::cout << "\nBEGIN: challenge_substring_counter" << std::endl;
+
+        std::ifstream file {"../romeoandjuliet.txt"};
+        if(!file.is_open()) {
+            std::cerr << "Error: File not found." << std::endl;
+            return;
+        }
+        std::cout << "Enter the substring that you want to search for: ";
+        std::string str;
+        std::getline(std::cin, str);
+        int substring_matches {};
+        int char_matches {};
+        while(!file.eof()) {
+            std::string line;
+            std::getline(file, line);
+            for(size_t i {}; i < line.length(); ++i) {
+                if(line.at(i) == str.at(char_matches)) {
+                    ++char_matches;
+                    if(char_matches == str.length()) {
+                        ++substring_matches;
+                        char_matches = 0;
+                    }
+                } else {
+                    char_matches = 0;
+                }
+            }
+        }
+        std::cout << "The substring '" << str << "' was found: " << substring_matches << " times." << std::endl;
     }
 };
 
 int main() {
     return Main().main();
 }
+
+/*
+Challenge 2: Read a text file.
+#include <iostream>
+#include <fstream>
+#include <string>
+void read_file(std::string file_name) {
+    std::ifstream file {file_name};
+    if(!file.is_open()) {
+        std::cerr << "Error opening file" << std::endl;
+        return;
+    }
+    while(!file.eof()) {
+        std::string line;
+        getline(file, line);
+        std::cout << line << std::endl;
+    }
+}
+
+Challenge 3: Write an automated grader.
+
+ */
