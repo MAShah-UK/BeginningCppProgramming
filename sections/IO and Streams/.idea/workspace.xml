@@ -12,6 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21697eeb-526c-4076-8073-a9d288316667" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../notes/BeginningCppProgramming.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../notes/BeginningCppProgramming.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -29,56 +30,64 @@
         <counts>
           <entry key="project.closed" value="1" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.8" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="9244" />
+          <entry key="cpp" value="10914" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="9244" />
+          <entry key="ObjectiveC" value="10914" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="txt" value="4" />
+          <entry key="txt" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="4" />
+          <entry key="PLAIN_TEXT" value="8" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="251" column="39" selection-start-line="251" selection-start-column="39" selection-end-line="251" selection-end-column="39" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-                <element signature="e#329#972#0" />
-                <element signature="e#977#2817#0" />
-                <element signature="e#2822#3814#0" />
-                <element signature="e#3819#4393#0" />
-                <element signature="e#4399#7359#0" />
-                <element signature="e#7453#8814#0" />
-                <element signature="e#8775#9188#0" />
-                <element signature="e#9223#9273#0" />
-                <element signature="e#10847#11900#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/main.cpp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="325">
+                  <caret line="339" column="7" selection-start-line="339" selection-start-column="7" selection-end-line="339" selection-end-column="7" />
+                  <folding>
+                    <element signature="e#0#19#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/romeoandjuliet.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="85">
+                  <caret line="5" selection-start-line="5" selection-end-line="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -98,7 +107,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="443" />
+    <option name="x" value="2197" />
     <option name="y" value="-8" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
@@ -175,22 +184,24 @@
       <updated>1535714813437</updated>
       <workItem from="1535714814700" duration="14522000" />
       <workItem from="1535822595258" duration="10642000" />
+      <workItem from="1535891331310" duration="2989000" />
+      <workItem from="1535977164883" duration="2118000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25164000" />
+    <option name="totallyTimeSpent" value="30271000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-8" width="1864" height="1096" extended-state="6" />
+    <frame x="1974" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25388026" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25799337" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32952183" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32952183" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991684" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -224,21 +235,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/romeoandjuliet_copy.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-80504" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/romeoandjuliet.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="251" column="39" selection-start-line="251" selection-start-column="39" selection-end-line="251" selection-end-column="39" />
+        <state relative-caret-position="325">
+          <caret line="339" column="7" selection-start-line="339" selection-start-column="7" selection-end-line="339" selection-end-column="7" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#329#972#0" />
-            <element signature="e#977#2817#0" />
-            <element signature="e#2822#3814#0" />
-            <element signature="e#3819#4393#0" />
-            <element signature="e#4399#7359#0" />
-            <element signature="e#7453#8814#0" />
-            <element signature="e#8775#9188#0" />
-            <element signature="e#9223#9273#0" />
-            <element signature="e#10847#11900#0" />
           </folding>
         </state>
       </provider>

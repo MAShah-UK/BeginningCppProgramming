@@ -3,6 +3,8 @@
 #include <vector>
 #include <fstream> // Provides definitions to read/write to files.
 #include <set>
+#include <regex>
+#include <sstream>
 
 class Main {
 public:
@@ -17,6 +19,9 @@ public:
         challenge_read_file("../MyFile.txt");
         challenge_automatic_grader();
         challenge_substring_counter();
+        challenge_copy_file();
+
+        string_streams();
 
         return 0;
     }
@@ -279,6 +284,46 @@ public:
         }
         std::cout << "The substring '" << str << "' was found: " << substring_matches << " times." << std::endl;
     }
+    void challenge_copy_file() {
+        std::cout << "\nBEGIN: challenge_copy_file" << std::endl;
+
+        std::ifstream source {"../romeoandjuliet.txt"};
+        std::ofstream target {"../romeoandjuliet_copy.txt"};
+        int current_line {};
+        while(!source.eof()) {
+            std::string line;
+            std::getline(source, line);
+            std::regex letter_regex {"[a-zA-Z]"};
+            // Note: Could've just checked to see if line == "", but this is for practice.
+            if(std::regex_search(line, letter_regex)) {
+                ++current_line;
+                target << std::left << std::setw(6)
+                    << std::to_string(current_line) + ") " << line << std::endl;
+            } else {
+                target << std::endl;
+            }
+        }
+    }
+
+    void string_streams() {
+        std::cout << "\nBEGIN: string_streams" << std::endl;
+
+        std::ostringstream oss;
+        oss << "Hi, my name is John Doe." << std::endl
+            << "My age is 30.";
+        std::cout << "String stream contains: " << oss.str() << std::endl;
+
+        std::string input {"Moe 100 1234.5"};
+        std::istringstream iss {input};
+        std::cout << "The input is: " << input << std::endl;
+        std::string text;
+        int integer;
+        double floating_point;
+        iss >> text >> integer >> floating_point;
+        std::cout << "The string is: " << text << std::endl
+                  << "The integer is: " << integer << std::endl
+                  << "The floating point is: " << floating_point << std::endl;
+    }
 };
 
 int main() {
@@ -286,23 +331,42 @@ int main() {
 }
 
 /*
-Challenge 2: Read a text file.
-#include <iostream>
-#include <fstream>
-#include <string>
-void read_file(std::string file_name) {
-    std::ifstream file {file_name};
-    if(!file.is_open()) {
-        std::cerr << "Error opening file" << std::endl;
-        return;
-    }
-    while(!file.eof()) {
-        std::string line;
-        getline(file, line);
-        std::cout << line << std::endl;
-    }
-}
+Quiz 1: The ________ class can be used to create files
+that can be written to, but not read from?
+ofstream
 
-Challenge 3: Write an automated grader.
+Quiz 2: The ________ class can be used to create files
+that can be both written to and read from?
+fstream
 
- */
+Quiz 3: The ________ method reads in an entire line from a text file.
+getline
+
+Quiz 4: The ________ method writes a single character to a text file.
+put
+
+Quiz 5: You must #include  ________  in order to perform file I/O in C++.
+<fstream>
+
+Quiz 6: Which of the following stream manipulators is not persistent?
+setw
+
+Quiz 7: Which class can be used to write formatted
+data to an in-memory string object?
+stringstream
+
+Quiz 8: By default, when we open a file for output,
+the contents of that file are ________.
+truncated
+
+Quiz 9: What are the steps, in order, that
+should be used when using a file in C++?
+- Open the file.
+- Check if the file was opened successfully.
+- Read/write data.
+- Close the file.
+
+Quiz 10: Closing an output file  ________
+should always be done since it writes out any unwritten buffers.
+
+*/
