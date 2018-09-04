@@ -6,6 +6,10 @@
 #include <tuple>
 #include <array>
 
+void square(int x) {
+    std::cout << x*x << " ";
+}
+
 class Main {
 public:
     int main() {
@@ -21,25 +25,66 @@ public:
     void STL_algorithms() {
         std::cout << "BEGIN: STL_algorithms" << std::endl;
 
-        std::vector<int> integers {5, 1, 10, 3, 6, 4};
+        std::vector<int> data {5, 1, 10, 3, 6, 4};
         std::cout << "Original vector: ";
-        print(integers); // T is deduced by the compiler as int.
+        print(data); // T is deduced by the compiler as int.
         std::cout << std::endl;
 
         std::cout << "Sorted: ";
-        std::sort(integers.begin(), integers.end());
-        print(integers);
+        std::sort(data.begin(), data.end());
+        print(data);
         std::cout << std::endl;
 
         std::cout << "Reversed elements: ";
-        std::reverse(integers.begin(), integers.end());
-        print(integers);
+        std::reverse(data.begin(), data.end());
+        print(data);
         std::cout << std::endl;
 
         std::cout << "Sum of elements: ";
-        int sum {std::accumulate(integers.begin(), integers.end(), 0)};
+        int sum {std::accumulate(data.begin(), data.end(), 0)};
         std::cout << sum << std::endl;
 
+        std::cout << "Does element 10 exist? ";
+        auto it = std::find(data.begin(), data.end(), 10); // Returns iterator pointing to first occurrence.
+        std::cout << (it!=data.end() ? "Yes." : "No.") << std::endl;
+
+        std::cout << "Each element squared is (functor): ";
+        class Square { // A functor is a function object.
+        public:
+            void operator()(int x) {
+                std::cout << x*x << " ";
+            }
+        } square_functor;
+        std::for_each(data.begin(), data.end(), square_functor);
+        std::cout << std::endl;
+
+        std::cout << "Each element squared is (function pointer): ";
+        std::for_each(data.begin(), data.end(), square);
+        std::cout << std::endl;
+
+        std::cout << "Each element squared is (lambda): ";
+        std::for_each(data.begin(), data.end(),
+                [](int x) { std::cout << x*x << " "; });
+        std::cout << std::endl;
+
+        std::cout << "Does the data only consist of even numbers? "
+                  << (std::all_of(data.begin(), data.end(), [](int x) { return x%2 == 0; })
+                    ? "Yes." : "No.")
+                  << std::endl;
+
+        std::cout << "The count of even numbers is: "
+                  << std::count_if(data.begin(), data.end(), [](int x) { return x%2 == 0; })
+                  << std::endl;
+
+        std::cout << "Replacing 10 with 100: ";
+        std::replace(data.begin(), data.end(), 10, 100);
+        print(data);
+        std::cout << std::endl;
+
+        std::cout << "Replacing each element with its square: ";
+        std::transform(data.begin(), data.end(), data.begin(), [](int x) { return x*x; });
+        print(data);
+        std::cout << std::endl;
     }
     void template_function() {
         std::cout << "\nBEGIN: template_function" << std::endl;
