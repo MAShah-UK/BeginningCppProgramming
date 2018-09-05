@@ -5,6 +5,8 @@
 #include <utility> // pair
 #include <tuple>
 #include <array>
+#include <deque>
+#include <regex>
 
 void square(int x) {
     std::cout << x*x << " ";
@@ -13,17 +15,19 @@ void square(int x) {
 class Main {
 public:
     int main() {
-        STL_algorithms();
+        algorithms();
         template_function();
         pair_and_tuple();
         STL_arrays();
         iterators();
+        deque();
+        challenge_is_palindrome();
 
         return 0;
     }
 
-    void STL_algorithms() {
-        std::cout << "BEGIN: STL_algorithms" << std::endl;
+    void algorithms() {
+        std::cout << "BEGIN: algorithms" << std::endl;
 
         std::vector<int> data {5, 1, 10, 3, 6, 4};
         std::cout << "Original vector: ";
@@ -150,6 +154,15 @@ public:
         std::cout << std::endl;
 
         std::cout << "Array size: " << data.size() << std::endl;
+
+        std::cout << "Reassigned array: ";
+        data = {1, 2, 3, 4, 5};
+        print(data);
+        std::cout << std::endl;
+
+        std::cout << "First element: " << data.front() << std::endl;
+
+        std::cout << "Last element: " << data.back() << std::endl;
     }
     void iterators() {
         std::cout << "\nBEGIN: iterators" << std::endl;
@@ -179,6 +192,56 @@ public:
         }
         std::cout << std::endl;
     }
+    void deque() {
+        std::cout << "\nBEGIN: deque" << std::endl;
+
+        // Double ended queue: O(1) insert/delete from front/back.
+        std::deque<int> data {1, 2, 3, 4, 5};
+
+        std::cout << "Initial data: ";
+        print(data);
+        std::cout << std::endl;
+
+        std::cout << "Add new first and new last elements: ";
+        data.push_front(0);
+        data.push_back(6);
+        print(data);
+        std::cout << std::endl;
+
+        std::cout << "Remove first and last elements: ";
+        data.pop_front();
+        data.pop_back();
+        print(data);
+        std::cout << std::endl;
+    }
+    void challenge_is_palindrome() {
+        std::cout << "\nBEGIN: challenge_is_palindrome" << std::endl;
+
+        std::string input {"A Santa at Nasa."};
+        std::cout << "The input is: " << input << std::endl;
+
+        // Process input and remove ignored characters.
+        std::transform(input.begin(), input.end(), input.begin(), toupper);
+        auto erase_begin = std::remove_if(input.begin(), input.end(),
+                [](char c) { return !(c >= 'A' && c <= 'Z'); });
+        input.erase(erase_begin, input.end());
+        // Use deque to confirm if processed input is a palindrome.
+        std::deque<char> chars;
+        std::move(input.begin(), input.end(), std::back_inserter(chars));
+        input.erase();
+        const size_t max = chars.size()/2;
+        for(size_t i {}; i < max; ++i) {
+            if(chars.front() == chars.back()) {
+                chars.pop_front();
+                chars.pop_back();
+            } else {
+                break;
+            }
+        }
+        bool is_valid = (chars.size() <= 1);
+
+        std::cout << "Is the input a palindrome? " << (is_valid ? "Yes." : "No.") << std::endl;
+    }
 
     template <typename T> // This template function can accept any vector argument.
     void print(const std::vector<T> &data) {
@@ -190,6 +253,12 @@ public:
     void print(const std::array<T, N> &data) {
         for(const T &i : data) {
             std::cout << i << " ";
+        }
+    }
+    template <typename T>
+    void print(const T &data) { // Will work with any container.
+        for(const auto &item: data) {
+            std::cout << item << " ";
         }
     }
     template <typename T>
