@@ -7,6 +7,9 @@
 #include <array>
 #include <deque>
 #include <regex>
+#include <list>
+#include <forward_list>
+#include <exception>
 
 void square(int x) {
     std::cout << x*x << " ";
@@ -22,6 +25,8 @@ public:
         iterators();
         deque();
         challenge_is_palindrome();
+        lists();
+        challenge_playlist();
 
         return 0;
     }
@@ -241,6 +246,146 @@ public:
         bool is_valid = (chars.size() <= 1);
 
         std::cout << "Is the input a palindrome? " << (is_valid ? "Yes." : "No.") << std::endl;
+    }
+    void lists() {
+        std::cout << "\nBEGIN: lists" << std::endl;
+
+        // Double linked list: insert/remove O(1), traverse O(n).
+        std::list<int> data {1, 5, 9};
+        std::list<int>::iterator it = std::find(data.begin(), data.end(), 5);
+        data.insert(it, 3); // 1,3,5,9
+        std::advance(it, 2); // Same as ++it; ++it;
+        data.insert(it, 7); // 1,3,5,7,9
+        data.erase(std::find(data.begin(), data.end(), 9)); // 1,3,5,7
+        data.resize(2);     // 1,3
+        data.resize(3);     // 1,3,0
+        data.push_front(0); // 0,1,3,0
+        data.pop_back();    // 0,1,3
+        data.pop_back();    // 0,1
+        data.push_back(2);  // 0,1,2
+        std::cout << "list contents: ";
+        print(data);
+        std::cout << std::endl;
+
+        // Singly linked list: Like list, but not bi-directional and no size()/back() methods.
+        std::forward_list<int> data2 {1, 5, 9};
+        auto it2 = data2.begin();
+        data2.insert_after(it2, 3); // 1,3,5,9
+        std::advance(it2, 2);
+        data2.insert_after(it2, 7); // 1,3,5,7,9
+        std::cout << "forward_list contents: ";
+        print(data2);
+        std::cout << std::endl;
+    }
+    void challenge_playlist() {
+        std::cout << "\nBEGIN: challenge_playlist" << std::endl;
+
+        class Playlist {
+            class EmptyPlaylistException : public std::exception {
+                const char *what() const noexcept override {
+                    return "The playlist is empty.";
+                }
+            };
+
+            std::list<std::string> playlist;
+            std::list<std::string>::iterator it = playlist.end();
+
+            void is_valid_request() {
+                if(is_empty()) {
+                    throw EmptyPlaylistException();
+                }
+            }
+            void play() {
+                std::cout << "Playing: " << *it << std::endl;
+            }
+        public:
+            bool is_empty() {
+                return (playlist.size() == 0);
+            }
+
+            void play_first() {
+                is_valid_request();
+                it = playlist.begin();
+                play();
+            }
+            void play_next() {
+                is_valid_request();
+                if(it == playlist.end() ||
+                   it == std::prev(playlist.end())) {
+                    it = playlist.begin();
+                } else {
+                    ++it;
+                }
+                play();
+            }
+            void play_previous() {
+                is_valid_request();
+                if(it == playlist.begin()) {
+                    it = std::prev(playlist.end());
+                } else {
+                    --it;
+                }
+                play();
+            }
+            void add_play(std::string name) {
+                if(name.empty()) {
+                    throw std::invalid_argument("name argument was empty.");
+                }
+                playlist.insert(it, name);
+                --it;
+                play();
+            }
+            void list_playlist() {
+                is_valid_request();
+                size_t i {1};
+                for(std::string name : playlist) {
+                    std::cout << '\t' << i << ") " << name << std::endl;
+                    ++i;
+                }
+            }
+        } playlist;
+        class Menu {
+            Playlist playlist;
+
+            void print_help() {
+                std::cout << "F - Play first song." << std::endl
+                          << "N - Play next song." << std::endl
+                          << "P - Play previous song." << std::endl
+                          << "A - Add and play a new song." << std::endl
+                          << "L - List of songs." << std::endl
+                          << "Q - Quit.";
+            }
+
+            void add_play() {
+                std::cout << "Enter the name of the song you wish to add: ";
+                std::string name;
+                std::cin >> name;
+                playlist.add_play(name);
+            }
+        public:
+            void loop() {
+                char input {};
+                while(input != 'Q') {
+                    std::cout << "[Playlist Manager]" << std::endl;
+                    print_help();
+                    std::cout << std::endl << std::endl
+                              << "Enter choice: ";
+                    std::cin >> input;
+                    input = static_cast<char>(toupper(input));
+                    switch(input) {
+                        case 'F': playlist.play_first(); break;
+                        case 'N': playlist.play_next(); break;
+                        case 'P': playlist.play_previous(); break;
+                        case 'A': add_play(); break;
+                        case 'L': playlist.list_playlist(); break;
+                        case 'Q': std::cout << "Goodbye." << std::endl; break;
+                        default:  std::cout << "Invalid input. Please try again." << std::endl;
+                    }
+                    std::cout << std::endl;
+                }
+            }
+        } menu;
+        menu.loop();
     }
 
     template <typename T> // This template function can accept any vector argument.
