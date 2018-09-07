@@ -10,6 +10,8 @@
 #include <list>
 #include <forward_list>
 #include <exception>
+#include <set>
+#include <unordered_set>
 
 void square(int x) {
     std::cout << x*x << " ";
@@ -27,6 +29,7 @@ public:
         challenge_is_palindrome();
         lists();
         challenge_playlist();
+        sets();
 
         return 0;
     }
@@ -387,6 +390,51 @@ public:
         } menu;
         menu.loop();
     }
+    void sets() {
+        std::cout << "\nBEGIN: sets" << std::endl;
+
+        // A set ignores duplicate data.
+        // Insertions/deletions/find operations are constant time.
+        // Ordered by key.
+        std::set<int> s {1,2,1,2,3,4,3}; // 1,2,3,4
+        s.insert(0); // 0,1,2,3,4
+        s.insert(5); // 0,1,2,3,4,5
+        s.insert(5); // 0,1,2,3,4,5
+        auto it = s.find(5);
+        s.erase(it);  // 0,1,2,3,4
+        std::cout << "Set contains: ";
+        print(s); // 0,1,2,3,4
+        std::cout << std::endl
+                  << "Set size is: " << s.size() << std::endl
+                  << "How many 1s are there? " << s.count(1) << std::endl
+                  << "How many 5s are there? " << s.count(5) << std::endl;
+        s.clear();
+        std::cout << "Is the set empty? " << (s.empty() ? "Yes." : "No.") << std::endl << std::endl;
+
+        // A multiset allows duplicate data, otherwise it's the same as set.
+        std::multiset<int> ms {1,2,1,2,3,3,4}; // 1,2,3,4
+        std::cout << "Multiset contains: ";
+        print(ms);
+        std::cout << std::endl
+                  << "Multiset size is: " << ms.size() << std::endl
+                  << "How many 1s are there? " << ms.count(1) << std::endl;
+
+        // An unordered set is unordered, otherwise it's the same as set.
+        // Elements cannot be modified, they must be erased and a new element must be inserted.
+        // No reverse iterators are allowed.
+        std::unordered_set<int> us {1,3,2,2}; // 1,3,2
+        std::cout << "Unordered set contains: ";
+        print(us); // 1,3,2
+        std::cout << std::endl;
+
+        // An unordered multiset is unordered and allows duplicates, otherwise it's the same as set.
+        // No reverse iterators allowed.
+        std::unordered_multiset<int> ums {1,3,2,2}; // 1,3,2,2
+        std::cout << "Unordered multiset contains: ";
+        print(ums);
+        std::cout << std::endl;
+    }
+
 
     template <typename T> // This template function can accept any vector argument.
     void print(const std::vector<T> &data) {
