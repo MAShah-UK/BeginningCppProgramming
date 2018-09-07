@@ -12,6 +12,8 @@
 #include <exception>
 #include <set>
 #include <unordered_set>
+#include <fstream>
+#include <iomanip>
 
 void square(int x) {
     std::cout << x*x << " ";
@@ -30,6 +32,8 @@ public:
         lists();
         challenge_playlist();
         sets();
+        maps();
+        challenge_unique_words();
 
         return 0;
     }
@@ -434,7 +438,69 @@ public:
         print(ums);
         std::cout << std::endl;
     }
+    void maps() {
+        std::cout << "\nBEGIN: maps" << std::endl;
 
+        std::map<std::string, int> name_age = {
+                {"Alan", 20},
+                {std::string("Bob"), int(20)}, // Inefficient, requires a move.
+                std::make_pair("Carla", 25) // Inefficient, requires a move.
+        };
+        name_age.insert(std::make_pair("David", 30));
+        name_age.insert({"Emily", 22});
+        name_age.at("Carla") = 26; // Overwrites, but will throw exception if key doesn't exist.
+        name_age["David"] = 29;    // Overwrites, but will insert if key doesn't exist.
+        name_age.erase("Emily");   // Removes.
+        name_age["Emily"] = 22;    // Inserts since it doesn't exist in the map.
+        std::cout << "Contents of map: ";
+        for(const std::pair<std::string, int> pair : name_age) {
+            std::cout << pair.first << " -> " << pair.second << ". ";
+        }
+        std::cout << std::endl
+                  << "Does Emily exist? " << (name_age.count("Emily") > 0 ? "Yes." : "No.")
+                  << std::endl;
+    }
+
+    void challenge_unique_words() {
+        std::cout << "\nBEGIN: challenge_unique_words" << std::endl;
+
+        std::ifstream source {"../words.txt"};
+        if(!source.is_open()) {
+            throw std::invalid_argument("File not found");
+        }
+        std::map<std::string, std::set<int>> words;
+        size_t max_length {};
+        int line_number {};
+        while(!source.eof()) {
+            std::string line;
+            getline(source, line);
+            ++line_number;
+            std::stringstream line_stream {line};
+            while(line.size()>0 && !line_stream.eof()) {
+                std::string word;
+                line_stream >> word;
+                word.erase(std::remove_if(word.begin(), word.end(),
+                        [](char c) { return !isalpha(c); }),
+                        word.end());
+                std::transform(word.begin(), word.end(), word.begin(),
+                        [](char c) { return tolower(c); });
+                word.at(0) = static_cast<char>( toupper(word.at(0)) );
+                words[word].insert(line_number);
+                max_length = std::max(max_length, word.size());
+            }
+        }
+        std::cout << "The unique words and their frequencies are: " << std::endl;
+        for(auto pair : words) {
+            std::string line_numbers {"[ "};
+            for(int line_no : pair.second) {
+                line_numbers.append(std::to_string(line_no)).append(" ");
+            }
+            line_numbers.append("]");
+            std::cout << '\t' << std::left << std::setw(max_length) << pair.first << " "
+                      << pair.second.size() << ": "
+                      << line_numbers << std::endl;
+        }
+    }
 
     template <typename T> // This template function can accept any vector argument.
     void print(const std::vector<T> &data) {
