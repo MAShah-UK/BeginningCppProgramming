@@ -14,6 +14,7 @@
 #include <unordered_set>
 #include <fstream>
 #include <iomanip>
+#include <queue>
 
 void square(int x) {
     std::cout << x*x << " ";
@@ -27,13 +28,15 @@ public:
         pair_and_tuple();
         STL_arrays();
         iterators();
-        deque();
+        deques();
         challenge_is_palindrome();
         lists();
         challenge_playlist();
         sets();
         maps();
         challenge_unique_words();
+        stacks();
+        queues();
 
         return 0;
     }
@@ -204,8 +207,8 @@ public:
         }
         std::cout << std::endl;
     }
-    void deque() {
-        std::cout << "\nBEGIN: deque" << std::endl;
+    void deques() {
+        std::cout << "\nBEGIN: deques" << std::endl;
 
         // Double ended queue: O(1) insert/delete from front/back.
         std::deque<int> data {1, 2, 3, 4, 5};
@@ -237,7 +240,7 @@ public:
         auto erase_begin = std::remove_if(input.begin(), input.end(),
                 [](char c) { return !(c >= 'A' && c <= 'Z'); });
         input.erase(erase_begin, input.end());
-        // Use deque to confirm if processed input is a palindrome.
+        // Use deques to confirm if processed input is a palindrome.
         std::deque<char> chars;
         std::move(input.begin(), input.end(), std::back_inserter(chars));
         input.erase();
@@ -460,7 +463,6 @@ public:
                   << "Does Emily exist? " << (name_age.count("Emily") > 0 ? "Yes." : "No.")
                   << std::endl;
     }
-
     void challenge_unique_words() {
         std::cout << "\nBEGIN: challenge_unique_words" << std::endl;
 
@@ -500,6 +502,55 @@ public:
                       << pair.second.size() << ": "
                       << line_numbers << std::endl;
         }
+    }
+    void stacks() {
+        std::cout << "\nBEGIN: stacks" << std::endl;
+
+        // Stack operations occur at the end of the stack - the top.
+        // It's a LIFO data structure.
+        // It's a container adapter. It can adapt a deque, vector, or list.
+        std::stack<int> data {std::deque<int>{1,2,3,4,5}}; // Front... back.
+        // std::stack<int, std::deque<int>>... equivalent.
+        // std::stack<int, std::vector<int>>... uses vector.
+        // std::stack<int, std::list<int>>... uses list.
+        std::cout << "Size of stack: " << data.size() << std::endl
+                  << "Top element: " << data.top() << std::endl; // Doesn't remove element.
+        data.push(6); // Pushes to the back!
+        std::cout << "Top element after push: " << data.top() << std::endl;
+        data.pop();   // Pops from the back!
+        std::cout << "Top element after pop: " << data.top() << std::endl;
+        std::cout << "Is stack empty? " << (data.empty() ? "Yes." : "No.") << std::endl;
+        std::cout << "The stack contains: ";
+        while(!data.empty()) {
+            std::cout << data.top() << " ";
+            data.pop();
+        }
+        std::cout << std::endl
+                  << "Is stack empty? " << (data.empty() ? "Yes." : "No.") << std::endl;
+    }
+    void queues() {
+        std::cout << "\nBEGIN: queues" << std::endl;
+
+        // Queue data is pushed from the back and popped from the front.
+        // It's a FIFO structure.
+        // It's a container adapter. It can adapt a deque or a list.
+        std::queue<int> data {std::deque<int>{1,2,3,4,5}}; // Front... back.
+        //std::queue<int, std::deque<int>>... equivalent.
+        //std::queue<int, std::list<int>>... uses list.
+        std::cout << "Queue size is: " << data.size() << std::endl
+                  << "The front element is: " << data.front() << std::endl // Doesn't remove element.
+                  << "The back element is: " << data.back() << std::endl;  // Doesn't remove element.
+        data.push(6); // Pushes to the back!  // 1,2,3,4,5,6
+        std::cout << "After pushing the back element is: " << data.back() << std::endl;
+        data.pop();   // Pops from the front! // 2,3,4,5,6
+        std::cout << "After popping the front element is: " << data.front() << std::endl
+                  << "The queue contains: ";
+        while(!data.empty()) {
+            std::cout << data.front() << " ";
+            data.pop();
+        }
+        std::cout << std::endl
+                  << "Is the queue empty? " << (data.empty() ? "Yes." : "No.") << std::endl;
     }
 
     template <typename T> // This template function can accept any vector argument.
