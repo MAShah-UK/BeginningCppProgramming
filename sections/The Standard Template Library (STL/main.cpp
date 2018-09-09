@@ -29,7 +29,7 @@ public:
         STL_arrays();
         iterators();
         deques();
-        challenge_is_palindrome();
+        challenge_deque_palindrome();
         lists();
         challenge_playlist();
         sets();
@@ -37,6 +37,7 @@ public:
         challenge_unique_words();
         stacks();
         queues();
+        challenge_sq_palindrome();
 
         return 0;
     }
@@ -229,8 +230,8 @@ public:
         print(data);
         std::cout << std::endl;
     }
-    void challenge_is_palindrome() {
-        std::cout << "\nBEGIN: challenge_is_palindrome" << std::endl;
+    void challenge_deque_palindrome() {
+        std::cout << "\nBEGIN: challenge_deque_palindrome" << std::endl;
 
         std::string input {"A Santa at Nasa."};
         std::cout << "The input is: " << input << std::endl;
@@ -551,6 +552,32 @@ public:
         }
         std::cout << std::endl
                   << "Is the queue empty? " << (data.empty() ? "Yes." : "No.") << std::endl;
+    }
+    void challenge_sq_palindrome() {
+        std::cout << "\nBEGIN: challenge_sq_palindrome" << std::endl;
+
+        std::string input {"A Santa at Nasa."};
+        std::cout << "The input is: " << input << std::endl;
+        std::transform(input.begin(), input.end(), input.begin(), toupper);
+        auto erase_begin = std::remove_if(input.begin(), input.end(),
+                                          [](char c) { return !isalpha(c); });
+        input.erase(erase_begin, input.end());
+        // Use stack and a queue to determine if the input is a palindrome.
+        std::stack<char> stack;
+        std::queue<char> queue;
+        for(char c : input) {
+            stack.push(c);
+            queue.push(c);
+        }
+        while(!stack.empty()) {
+            if(stack.top() == queue.front()) {
+                stack.pop();
+                queue.pop();
+            } else {
+                break;
+            }
+        }
+        std::cout << "Is the input a palindrome? " << (stack.empty() ? "Yes." : "No.") << std::endl;
     }
 
     template <typename T> // This template function can accept any vector argument.
