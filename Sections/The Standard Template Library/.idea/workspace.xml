@@ -11,10 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9357dc22-ec82-4c2c-b07b-da0ee8580b4e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="9357dc22-ec82-4c2c-b07b-da0ee8580b4e" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +38,7 @@
     <session id="-112406113">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.7" value="3" />
           <entry key="project.open.time.8" value="3" />
@@ -51,13 +48,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="22771" />
+          <entry key="cpp" value="23033" />
           <entry key="h" value="163" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="22934" />
+          <entry key="ObjectiveC" value="23196" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -81,8 +78,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="648" selection-start-line="648" selection-end-line="648" />
+            <state relative-caret-position="795">
+              <caret line="666" column="6" selection-start-line="666" selection-start-column="6" selection-end-line="666" selection-end-column="6" />
               <folding>
                 <element signature="e#366#417#0" />
                 <element signature="e#444#841#0" />
@@ -207,20 +204,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.The_Standard_Template_Library__STL">
+  <component name="RunManager" selected="Application.The_Standard_Template_Library">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="The_Standard_Template_Library__STL" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="The_Standard_Template_Library__STL" TARGET_NAME="The_Standard_Template_Library__STL" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="The_Standard_Template_Library__STL" RUN_TARGET_NAME="The_Standard_Template_Library__STL">
+    <configuration name="The_Standard_Template_Library" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="The_Standard_Template_Library" TARGET_NAME="The_Standard_Template_Library" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="The_Standard_Template_Library" RUN_TARGET_NAME="The_Standard_Template_Library">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
       <item itemvalue="Application.Build All" />
-      <item itemvalue="Application.The_Standard_Template_Library__STL" />
+      <item itemvalue="Application.The_Standard_Template_Library" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -241,12 +238,12 @@
       <workItem from="1536317346036" duration="15259000" />
       <workItem from="1536405842929" duration="7429000" />
       <workItem from="1536528156227" duration="2314000" />
-      <workItem from="1536579096744" duration="1327000" />
+      <workItem from="1536579096744" duration="2145000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67401000" />
+    <option name="totallyTimeSpent" value="68219000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1974" y="-8" width="1874" height="1096" extended-state="6" />
@@ -257,7 +254,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32952183" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32952183" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991684" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -348,8 +345,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="648" selection-start-line="648" selection-end-line="648" />
+        <state relative-caret-position="795">
+          <caret line="666" column="6" selection-start-line="666" selection-start-column="6" selection-end-line="666" selection-end-column="6" />
           <folding>
             <element signature="e#366#417#0" />
             <element signature="e#444#841#0" />
