@@ -23,8 +23,8 @@
 * ✓ Inheritance
 * ✓ Polymorphism
 * ✓ Smart Pointers
-* Exception Handling
-* I/O and Streams
-* The Standard Template Library (STL)
-* Bonus Material and Source Code
+* ✓ Exception Handling
+* ✓ I/O and Streams
+* ✓ The Standard Template Library (STL)
+* ✓ Bonus Material and Source Code
 
