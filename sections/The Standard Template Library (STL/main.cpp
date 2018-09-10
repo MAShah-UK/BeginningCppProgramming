@@ -38,6 +38,7 @@ public:
         stacks();
         queues();
         challenge_sq_palindrome();
+        priority_queues();
 
         return 0;
     }
@@ -579,6 +580,20 @@ public:
         }
         std::cout << "Is the input a palindrome? " << (stack.empty() ? "Yes." : "No.") << std::endl;
     }
+    void priority_queues() {
+        std::cout << "\nBEGIN: priority_queues" << std::endl;
+
+        std::priority_queue<int> data;
+        for(int i : {9,1,3,5,4,1}) { // 1,1,3,4,5,9
+            data.push(i);
+        }
+        std::cout << "The priority queue contains: ";
+        while(!data.empty()) {
+            std::cout << data.top() << " "; // 9,5,4,3,1,1
+            data.pop();
+        }
+        std::cout << std::endl;
+    }
 
     template <typename T> // This template function can accept any vector argument.
     void print(const std::vector<T> &data) {
@@ -607,3 +622,47 @@ public:
 int main() {
     return Main().main();
 }
+
+/*
+Quiz 1: Three of the main components of the STL are:
+Containers, iterators, and algorithms.
+
+Quiz 2: Three types of containers in the STL are ________________
+sequence, associative, and adapter containers.
+
+Quiz 3: Which of the following are container adapters?
+Stack, queue, and priority queue.
+
+Quiz 4: In order to use and compare user-defined Classes
+in the STL, the following operators must be overloaded:
+operator== and operator<.
+
+Quiz 5: We should use _______________ to obtain an
+iterator to the first element in a container.
+begin()
+
+Quiz 6: The ____________ container should be considered if we expect
+to insert many elements into the middle of the container.
+list
+
+Quiz 7: The ____________ container should be considered if
+we want to store unique key/value pairs sorted by key.
+map
+
+Quiz 8: Some STL container classes provide the same function that is provided
+by in the algorithms library. For example, the list container provides a
+sort function as does the algorithms library? Why is this so?
+The function in the algorithms library is generic, while the function in
+the container class is optimised for that container type.
+
+Quiz 9: The STL algorithms use iterators and in many cases allow
+the programmer to provide specific behavior by using ____________.
+All of the above:
+- Functors (function objects).
+- Lambda expressions.
+- Function pointers.
+
+Quiz 10: The ____________ container should be considered if we expect
+to insert and remove elements from the front and back of the container.
+deque.
+ */
